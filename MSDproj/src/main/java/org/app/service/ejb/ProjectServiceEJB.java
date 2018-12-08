@@ -2,17 +2,20 @@ package org.app.service.ejb;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.logging.Logger;
 
-//import javax.annotation.PostConstruct;
+import javax.annotation.PostConstruct;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.app.service.entities.Project;
 
+
 @Stateless @LocalBean
 public class ProjectServiceEJB implements ProjectService{
 
+	private static Logger logger = Logger.getLogger(ProjectServiceEJB.class.getName());
 	//private static Account Account = Account.getAccount())
 	
 	@PersistenceContext(unitName="MSD")
@@ -20,11 +23,13 @@ public class ProjectServiceEJB implements ProjectService{
 	//constructor
 	public ProjectServiceEJB() {
 	}
-	/*@PostConstruct
+	
+	@PostConstruct
 	public void init() {
-		Account.info("POSTCONSTRUCT-INIT : " + this.em);
-	}*/
+		//Logger.info("POSTCONSTRUCT-INIT : " + this.em);
+	}
 	//create and update
+	
 	@Override
 	public Project addProject(Project projectToAdd) {
 		em.persist(projectToAdd);
@@ -40,7 +45,7 @@ public class ProjectServiceEJB implements ProjectService{
 		return em.find(Project.class, id_project);
 	}
 	public Collection<Project> getProject(){
-		List<Project> projects = em.createQuery("SELECT p FROM Project ", Project.class).getResultList();
+		List<Project> projects = em.createQuery("SELECT p FROM Project p", Project.class).getResultList();
 		return projects;
 	}
 	//remove

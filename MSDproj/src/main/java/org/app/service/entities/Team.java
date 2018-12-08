@@ -1,5 +1,6 @@
 package org.app.service.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ import static javax.persistence.CascadeType.ALL;
 
 
 @Entity
-public class Team {
+public class Team implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = AUTO)

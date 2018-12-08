@@ -1,5 +1,6 @@
 package org.app.service.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,14 +16,14 @@ import javax.persistence.OneToMany;
 import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.CascadeType.ALL;
 @Entity
-public class Project {
+public class Project implements Serializable{
 	
 	@Id
 	@GeneratedValue
 	private Integer id_project;
 	private String title;
 	private String description;
-	private Integer level;
+	private Integer projectlevel;
 	
 	@Temporal(TemporalType.DATE)
 	private Date start_project;
@@ -51,11 +52,12 @@ public class Project {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Integer getLevel() {
-		return level;
+
+	public Integer getProjectlevel() {
+		return projectlevel;
 	}
-	public void setLevel(Integer level) {
-		this.level = level;
+	public void setProjectlevel(Integer projectlevel) {
+		this.projectlevel = projectlevel;
 	}
 	public Date getStart_project() {
 		return start_project;
@@ -81,10 +83,16 @@ public class Project {
 		this.id_project = id_project;
 		this.title = title;
 		this.description = description;
-		this.level = level;
+		this.projectlevel = level;
 		this.start_project = start_project;
 		this.end_project = end_project;
 		this.teams = teams;
+	}
+	public Project(Integer id_project, String title) {
+		super();
+		this.id_project = id_project;
+		this.title = title;
+		
 	}
 	public Project() {
 		super();

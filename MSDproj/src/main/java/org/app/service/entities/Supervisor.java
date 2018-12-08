@@ -1,5 +1,6 @@
 package org.app.service.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.CascadeType.ALL;
 
 @Entity
-public class Supervisor {
+public class Supervisor implements Serializable{
 
 	@Id
 	@GeneratedValue

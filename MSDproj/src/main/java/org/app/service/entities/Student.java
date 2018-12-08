@@ -1,5 +1,6 @@
 package org.app.service.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -13,7 +14,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 
-public class Student {
+public class Student implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = AUTO)

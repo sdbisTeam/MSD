@@ -3,6 +3,7 @@ package org.app.service.entities;
 import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.FetchType.EAGER;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,7 +15,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.GeneratedValue;
 @Entity
-public class Schedule {
+public class Schedule implements Serializable{
 
 	@Id
 	@GeneratedValue

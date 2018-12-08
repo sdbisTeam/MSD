@@ -1,5 +1,7 @@
 package org.app.service.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
@@ -7,7 +9,7 @@ import javax.persistence.OneToOne;
 
 
 @Entity
-public class Account {
+public class Account implements Serializable{
 
 	@Id
 	@GeneratedValue
