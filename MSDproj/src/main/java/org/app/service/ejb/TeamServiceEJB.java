@@ -21,19 +21,19 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.app.service.entities.Project;
+import org.app.service.entities.Team;
 
-@Path("project")
+@Path("team")
 @Stateless @LocalBean
-public class ProjectServiceEJB implements ProjectService{
+public class TeamServiceEJB implements TeamService{
 
-	private static Logger logger = Logger.getLogger(ProjectServiceEJB.class.getName());
+	private static Logger logger = Logger.getLogger(TeamServiceEJB.class.getName());
 	//private static Account Account = Account.getAccount())
 	
 	@PersistenceContext(unitName="MSD")
 	private EntityManager em;
 	//constructor
-	public ProjectServiceEJB() {
+	public TeamServiceEJB() {
 	}
 	
 	@PostConstruct
@@ -43,35 +43,35 @@ public class ProjectServiceEJB implements ProjectService{
 	//create and update
 	
 	@Override
-	@PUT @Path("/{projectToAdd}") 
+	@PUT @Path("/{teamToAdd}") 
 	@Consumes({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-	public Project addProject(Project projectToAdd) {
-		em.persist(projectToAdd);
+	public Team addTeam(Team teamToAdd) {
+		em.persist(teamToAdd);
 		em.flush();
-		em.refresh(projectToAdd);
-		return projectToAdd;	
+		em.refresh(teamToAdd);
+		return teamToAdd;	
 		
 	}
 	
 	//read
 	@Override 
-	@GET @Path("/{id_project}") 
+	@GET @Path("/{id_team}") 
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-	public Project getProjectByProjectID( @PathParam("id_project") Integer id_project) {
+	public Team getTeamByTeamID( @PathParam("id_team") Integer id_team) {
 		
-		return em.find(Project.class, id_project);
+		return em.find(Team.class, id_team);
 	}
 	
 	/*
 	@Override
-	@GET @Path("/{id_project}") 
+	@GET @Path("/{id_team}") 
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-	public Project getId_project(@PathParam("id_project") Integer id_project) {
-		Project project = super.getId_project(id_project);
-		//Logger.info( " jshdij" + id_project + project);
-		return project;
+	public Team getId_team(@PathParam("id_team") Integer id_team) {
+		Team team = super.getId_team(id_team);
+		//Logger.info( " jshdij" + id_team + team);
+		return team;
 	}
 	
 	*/
@@ -79,27 +79,27 @@ public class ProjectServiceEJB implements ProjectService{
 	@GET
 	//@Consumes({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-	public Collection<Project> getProject(){
-		List<Project> projects = em.createQuery("SELECT p FROM Project p", Project.class).getResultList();
-		return projects;
+	public Collection<Team> getTeam(){
+		List<Team> teams = em.createQuery("SELECT p FROM Team p", Team.class).getResultList();
+		return teams;
 	}
 	//remove
-	@DELETE @Path("/{projectToDelete}")
+	@DELETE @Path("/{teamToDelete}")
 	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-	public String removeProject(@PathParam("projectToDelete") Project projectToDelete) {
-		projectToDelete = em.merge(projectToDelete);
-		em.remove(projectToDelete);
+	public String removeTeam(@PathParam("teamToDelete") Team teamToDelete) {
+		teamToDelete = em.merge(teamToDelete);
+		em.remove(teamToDelete);
 		em.flush();
 		return "True";
 	}
 	//custom read custom query
 	@Override
-	public Project getProjectByName(String title) {
-		return em.createQuery("SELECT p FROM Project p Where p.title = :title ", Project.class).setParameter("title", title).getSingleResult();
+	public Team getTeamByName(String title) {
+		return em.createQuery("SELECT p FROM Team p Where p.title = :title ", Team.class).setParameter("title", title).getSingleResult();
 	}
 	//other 
 	public String sayRest() {
-		return "Project Service is on ....";
+		return "Team Service is on ....";
 	}
 	
 	

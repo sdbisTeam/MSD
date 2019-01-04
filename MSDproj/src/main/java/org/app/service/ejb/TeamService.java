@@ -8,29 +8,29 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 
-import org.app.service.entities.Project;
+import org.app.service.entities.Team;
 @Remote
-public interface ProjectService {
+public interface TeamService {
 
 	//create or update
 	@PUT
-	Project addProject(Project projectToAdd);
+	Team addTeam(Team teamToAdd);
 	
 	//delete
 	@DELETE
-	String removeProject(Project projectToDelete);
+	String removeTeam(Team teamToDelete);
 	
 	//read
 	@GET
-	Project getProjectByProjectID(Integer id_project);
-	Collection<Project> getProject();
+	Team getTeamByTeamID(Integer id_team);
+	Collection<Team> getTeam();
 	/*
 	@GET
-	Project getById(Integer id_project);
+	Team getById(Integer id_team);
 	
 	*/
 	//custom read custom query
-	Project getProjectByName(String projectTitle);
+	Team getTeamByName(String teamTitle);
 	
 	//others
 	String sayRest();
