@@ -76,6 +76,14 @@ public class Team implements Serializable{
 	
 	
 	
+	public Team(String name) {
+		super();
+		this.name = name;
+	}
+
+
+
+
 	public static String BASE_URL = Project.BASE_URL;
 	@XmlElement(name = "link")
 	public AtomLink getLink() throws Exception{

@@ -92,13 +92,13 @@ public class Project implements Serializable{
 	public void setTeams(List<Team> teams) {
 		this.teams = teams;
 	}
-	public Project(Integer id_project, String title, String description, Integer level, Date start_project,
+	public Project(Integer id_project, String title, String description, Integer projectlevel, Date start_project,
 			Date end_project, List<Team> teams) {
 		super();
 		this.id_project = id_project;
 		this.title = title;
 		this.description = description;
-		this.projectlevel = level;
+		this.projectlevel = projectlevel;
 		this.start_project = start_project;
 		this.end_project = end_project;
 		this.teams = teams;
@@ -108,6 +108,12 @@ public class Project implements Serializable{
 		this.id_project = id_project;
 		this.title = title;
 		
+	}
+	
+	
+	public Project(String title) {
+		super();
+		this.title = title;
 	}
 	public Project() {
 		super();
