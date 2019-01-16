@@ -76,6 +76,11 @@ public class Team implements Serializable{
 	
 	
 	
+	public Team(Integer id_team, String name) {
+		super();
+		this.id_team = id_team;
+		this.name = name;
+	}
 	public Team(String name) {
 		super();
 		this.name = name;
